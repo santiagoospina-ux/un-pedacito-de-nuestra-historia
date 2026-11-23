@@ -1,0 +1,28 @@
+ALBUM DE RECUERDOS
+
+Abre index.html en tu navegador para ver la pagina.
+La carpeta assets contiene las 19 fotografias.
+
+NOVEDADES:
+- Corazones flotantes sutiles en el fondo.
+- Destellos que siguen el movimiento del cursor.
+- Pequena explosion de corazones al tocar o hacer clic.
+- Fotografias con brillo al pasar el cursor.
+- Aparicion suave de los recuerdos al desplazarse.
+- Al tocar una foto, se abre ampliada.
+
+Para publicarla, sube toda la carpeta recuerdos_web a un servicio de hosting estatico.
+No se requiere instalar programas ni conectar una base de datos.
+
+MUSICA:
+La cancion 18 DE NOV.mp3 esta incluida en assets. Para escucharla, pulsa el boton musical flotante en la esquina inferior derecha. Los navegadores requieren una interaccion para iniciar el audio.
+
+VIDEO DE YOUTUBE:
+Se agrego un reproductor integrado para https://youtu.be/MvITnIylaQ8 y un enlace para abrirlo directamente en YouTube.
+
+NUEVO DISENO MAGICO:
+- Parallax suave en la portada: las capas reaccionan al movimiento del cursor y al scroll.
+- Puerta fantastica inspirada en los mundos de monstruos y puertas magicas.
+- Detalles turquesa con manchas juguetonas como guiño a Sullivan.
+- Rosa bajo una cupula de cristal como guiño a La Bella y la Bestia.
+Los elementos son decorativos originales, sin usar imagenes oficiales de las peliculas.

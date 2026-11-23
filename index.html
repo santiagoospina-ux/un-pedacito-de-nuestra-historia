@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f5eee8"><title>Un pedacito de nuestra historia</title>
+<style>
+:root{--paper:#f5eee8;--ink:#332925;--muted:#84746d;--wine:#895b62;--line:#dfd1c8}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif}.wrap{max-width:1180px;margin:auto;padding:0 28px}.hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:7vw;padding-top:52px;padding-bottom:60px}.eyebrow{font:11px/1.4 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--wine)}h1{font-size:clamp(48px,7vw,88px);font-weight:400;line-height:.98;letter-spacing:-.045em;margin:22px 0}.intro{font-size:19px;line-height:1.65;color:#665750;max-width:430px}.cta{display:inline-block;margin-top:25px;padding:14px 23px;border:1px solid var(--wine);border-radius:99px;color:var(--wine);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;transition:.25s}.cta:hover{background:var(--wine);color:#fff}.hero-photo{position:relative;padding:12px;background:#fff;box-shadow:0 18px 55px #5c42301c;transform:rotate(2deg)}.hero-photo img{width:100%;height:560px;object-fit:cover;display:block}.hero-photo:after{content:'un recuerdo bonito';position:absolute;bottom:-28px;right:8px;font-style:italic;color:var(--wine);font-size:17px}.section-head{text-align:center;padding:70px 0 36px}.section-head h2{font-size:clamp(34px,5vw,52px);font-weight:400;margin:12px 0}.section-head p{font-size:16px;color:var(--muted);font-style:italic}.gallery{columns:3;column-gap:20px;padding-bottom:90px}.tile{break-inside:avoid;margin:0 0 20px;padding:9px;background:#fff;box-shadow:0 8px 28px #4b33220d;cursor:zoom-in;transition:transform .3s}.tile:nth-child(3n+1){transform:rotate(-1deg)}.tile:nth-child(3n+2){transform:rotate(1deg)}.tile:hover{transform:translateY(-4px) rotate(0)}.tile img{width:100%;height:auto;display:block}.note{max-width:760px;margin:10px auto 100px;text-align:center;padding:55px 30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.note .mark{font-size:28px;color:var(--wine)}.note h2{font-size:clamp(30px,4vw,46px);font-weight:400;margin:18px 0}.note p{font-size:18px;line-height:1.8;color:#665750}.footer{text-align:center;padding:0 20px 45px;color:#9b8980;font:11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}.lightbox{position:fixed;inset:0;background:#171311ed;display:none;align-items:center;justify-content:center;padding:24px;z-index:10}.lightbox.open{display:flex}.lightbox img{max-width:min(92vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 10px 50px #0008}.close{position:absolute;top:20px;right:25px;color:white;background:none;border:0;font-size:34px;cursor:pointer}.fade{animation:rise .9s both}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@media(max-width:760px){.wrap{padding:0 18px}.hero{min-height:auto;grid-template-columns:1fr;padding-top:55px;gap:38px}.hero-photo{max-width:520px;margin:0 auto}.hero-photo img{height:430px}.gallery{columns:2;column-gap:12px}.tile{margin-bottom:12px;padding:6px}.section-head{padding-top:65px}.note{margin-bottom:70px;padding:38px 18px}}@media(max-width:420px){.gallery{columns:1}.hero-photo img{height:380px}}
+
+/* Detalles interactivos: destellos, corazones y movimiento sutil */
+:root{--glow:#d88da1;--rose:#b86e83}
+body{overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.20;background-image:radial-gradient(#b86e83 0.7px,transparent .7px);background-size:24px 24px;mask-image:linear-gradient(to bottom,black,transparent 70%)}
+.hero-photo{border:1px solid #fff9;transition:transform .5s,box-shadow .5s}
+.hero-photo:hover{transform:rotate(0) translateY(-5px);box-shadow:0 25px 70px #895b6230}
+.hero-photo:before{content:"✦";position:absolute;z-index:2;top:-22px;left:-18px;color:#c98b9c;font-size:34px;animation:twinkle 2.8s infinite}
+.tile{position:relative;overflow:hidden;border-radius:3px}
+.tile:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 25%,#fff7 48%,transparent 68%);transform:translateX(-130%);transition:transform .8s;pointer-events:none}
+.tile:hover:after{transform:translateX(130%)}
+.tile img{transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .4s}
+.tile:hover img{transform:scale(1.035);filter:saturate(1.08)}
+.cta{position:relative;overflow:hidden}
+.cta:after{content:"";position:absolute;inset:-40% auto -40% -40%;width:25%;background:#fff8;transform:skewX(-25deg);transition:left .7s}
+.cta:hover:after{left:130%}
+.sparkle-layer,.heart-layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.sparkle{position:absolute;width:7px;height:7px;background:#fff;border-radius:50%;box-shadow:0 0 8px 3px #e9b5c5,0 0 18px 5px #fff;animation:sparkleOut .85s ease-out forwards}
+.heart{position:absolute;bottom:-35px;color:#c77991;text-shadow:0 2px 12px #d99aab88;animation:floatHeart linear forwards;opacity:0}
+.burst-heart{position:absolute;font-size:19px;animation:burst .9s ease-out forwards;filter:drop-shadow(0 2px 5px #b86e8366)}
+@keyframes sparkleOut{0%{opacity:0;transform:scale(.2) rotate(0)}25%{opacity:1}100%{opacity:0;transform:scale(0) rotate(90deg)}}
+@keyframes floatHeart{0%{opacity:0;transform:translateY(0) rotate(-12deg) scale(.65)}12%{opacity:.65}85%{opacity:.45}100%{opacity:0;transform:translateY(-110vh) rotate(22deg) scale(1.25)}}
+@keyframes burst{0%{opacity:0;transform:translate(0,0) scale(.3)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.3) rotate(var(--rot))}}
+@keyframes twinkle{0%,100%{opacity:.45;transform:scale(.8) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(18deg)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.lightbox{backdrop-filter:blur(10px)}
+.lightbox.open{animation:lightFade .25s ease-out}
+.lightbox img{border:8px solid #fff;border-radius:3px;animation:photoPop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes lightFade{from{opacity:0}to{opacity:1}}
+@keyframes photoPop{from{transform:scale(.94);opacity:.6}to{transform:scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+
+.music-player{position:fixed;right:18px;bottom:18px;z-index:30;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border:1px solid #ffffffb8;border-radius:999px;background:rgba(255,250,250,.92);box-shadow:0 10px 35px #70434b22;backdrop-filter:blur(12px);color:#76515b;font:500 13px/1.2 inherit}
+.music-toggle{width:38px;height:38px;border:0;border-radius:50%;background:#bd7e91;color:white;font-size:17px;cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 14px #bd7e9144}
+.music-toggle:hover{transform:scale(1.06)}
+.music-meta{display:flex;flex-direction:column;gap:2px}
+.music-meta small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.65}
+.music-player.playing .music-toggle{animation:musicPulse 1.8s infinite}
+@keyframes musicPulse{50%{box-shadow:0 0 0 7px #bd7e9125,0 4px 14px #bd7e9144}}
+@media(max-width:520px){.music-player{right:12px;bottom:12px;padding-right:12px}.music-meta{max-width:105px}}
+
+
+.youtube-memory{max-width:850px;margin:0 auto 90px;padding:0 0 12px}
+.youtube-frame{position:relative;width:100%;aspect-ratio:16/9;background:#21191b;overflow:hidden;border:9px solid #fff;box-shadow:0 14px 42px #5c42301b}
+.youtube-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.youtube-link{text-align:center;margin:18px 0 0}
+.youtube-link a{color:var(--wine);font:12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #c9a9ae;padding-bottom:4px}
+.youtube-link a:hover{color:#bd7e91}
+@media(max-width:760px){.youtube-memory{margin:0 auto 65px}.youtube-frame{border-width:5px}}
+
+
+/* Mundo de cuento: puertas mágicas, manchas monstruosas y rosa encantada */
+:root{--paper:#f7f0ec;--wine:#80566b}
+.parallax-hero{position:relative;isolation:isolate;overflow:hidden}
+.parallax-hero>*:not(.storybook-scene){position:relative;z-index:2}
+.storybook-scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.parallax-layer{position:absolute;will-change:transform;transition:transform .18s ease-out}
+.glow-orb{width:420px;height:420px;border-radius:50%;right:5%;top:8%;background:radial-gradient(circle,#f5dce7a8 0,#d6e6e8a0 34%,transparent 70%);filter:blur(6px)}
+.door-portal{width:210px;height:330px;left:3%;top:18%;border:12px solid #76536f;border-bottom-width:18px;border-radius:110px 110px 8px 8px;background:linear-gradient(145deg,#b8a0bc,#75617f 70%);box-shadow:inset 0 0 0 5px #e6d7e6,0 18px 40px #58405b30;opacity:.26;transform:rotate(-8deg)}
+.portal-glow{position:absolute;inset:13px 13px 15px;border-radius:100px 100px 2px 2px;background:radial-gradient(ellipse at 50% 35%,#fff5d7,#d6a8c5 35%,#6d557b 78%);filter:blur(1px)}
+.portal-knob{position:absolute;right:20px;top:55%;width:12px;height:12px;border-radius:50%;background:#f3d28a;box-shadow:0 0 12px #f3d28a}
+.portal-star{position:absolute;top:22px;right:35px;color:#fff4d4;font-size:30px}
+.monster-spots{width:270px;height:220px;right:0;bottom:4%;opacity:.22;transform:rotate(-13deg)}
+.monster-spots i{position:absolute;display:block;border-radius:50%;background:#77a9a4;box-shadow:inset -5px -6px 0 #487c79}
+.monster-spots i:nth-child(1){width:52px;height:52px;left:12px;top:20px}
+.monster-spots i:nth-child(2){width:32px;height:32px;left:100px;top:8px}
+.monster-spots i:nth-child(3){width:68px;height:68px;left:175px;top:48px}
+.monster-spots i:nth-child(4){width:40px;height:40px;left:62px;top:112px}
+.monster-spots i:nth-child(5){width:28px;height:28px;left:145px;top:145px}
+.monster-spots i:nth-child(6){width:46px;height:46px;left:225px;top:155px}
+.rose-dome{right:19%;bottom:3%;width:92px;height:130px;border:2px solid #c6a4a1;border-radius:48% 48% 8px 8px;background:linear-gradient(110deg,#ffffff85,#f7dce455);box-shadow:0 10px 25px #8d66751b;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:.7}
+.rose-dome:after{content:"";position:absolute;bottom:-7px;left:-10px;width:110px;height:12px;border-radius:50%;background:#b78d82}
+.rose-dome span{font-size:38px;filter:drop-shadow(0 4px 4px #69434b30);animation:roseSway 4s ease-in-out infinite}
+.rose-dome small{position:absolute;top:140px;width:150px;text-align:center;color:#916e7c;font:10px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.floating-star{color:#c69b65;font-size:42px;text-shadow:0 0 15px #fff;animation:starFloat 5s ease-in-out infinite}
+.star-one{left:42%;top:13%}.star-two{right:8%;top:43%;font-size:30px;animation-delay:-2s}
+@keyframes starFloat{0%,100%{transform:translateY(0) rotate(0);opacity:.45}50%{transform:translateY(-15px) rotate(22deg);opacity:1}}
+@keyframes roseSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg)}}
+.hero-photo{z-index:2}
+.hero-photo img{position:relative;z-index:1}
+.hero-photo{box-shadow:0 20px 60px #5c423026,0 0 0 1px #fff}
+.section-head h2{color:#674c60}
+.note{position:relative;background:linear-gradient(135deg,#fff9f6,#f4e9ee);box-shadow:0 18px 50px #7d536013}
+.note:before{content:"✧";position:absolute;top:-18px;left:50%;transform:translateX(-50%);background:var(--paper);padding:0 15px;color:#bc9a68;font-size:25px}
+.tile{box-shadow:0 10px 32px #5a3d4815}
+@media(max-width:760px){
+ .door-portal{left:-55px;top:10%;transform:scale(.75) rotate(-8deg);opacity:.16}
+ .monster-spots{right:-90px;bottom:5%;transform:scale(.8) rotate(-13deg)}
+ .rose-dome{right:7%;bottom:1%;transform:scale(.78);transform-origin:bottom right;opacity:.5}
+ .glow-orb{right:-130px;top:4%}
+ .star-one{left:70%;top:8%}
+}
+@media(prefers-reduced-motion:reduce){.parallax-layer,.rose-dome span{animation:none!important;transition:none!important}}
+
+</style></head><body>
+
+<div class="music-player" id="musicPlayer" aria-label="Reproductor de música">
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Reproducir canción">♫</button>
+  <div class="music-meta"><small>Una canción para este recuerdo</small><span>18 de nov.</span></div>
+  <audio id="memorySong" preload="metadata" loop>
+    <source src="assets/18-de-nov.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<div class="sparkle-layer" id="sparkles"></div><div class="heart-layer" id="hearts"></div><main class="wrap"><section class="hero parallax-hero">
+<div class="storybook-scene" aria-hidden="true">
+  <div class="parallax-layer glow-orb" data-depth="0.10"></div>
+  <div class="parallax-layer door-portal" data-depth="0.22">
+    <div class="portal-glow"></div><div class="portal-knob"></div>
+    <span class="portal-star">✦</span>
+  </div>
+  <div class="parallax-layer monster-spots" data-depth="0.34">
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="parallax-layer rose-dome" data-depth="0.16">
+    <span>🌹</span><small>un recuerdo encantado</small>
+  </div>
+  <div class="parallax-layer floating-star star-one" data-depth="0.42">✧</div>
+  <div class="parallax-layer floating-star star-two" data-depth="0.28">✦</div>
+</div>
+<div class="fade"><div class="eyebrow">Un pequeño álbum de recuerdos</div><h1>Un pedacito<br>de nuestra<br>historia.</h1><p class="intro">Hay momentos que merecen quedarse en un lugar bonito. Estas fotografías guardan algunos de ellos: días sencillos, celebraciones, aventuras y sonrisas que hicieron parte del camino.</p><a class="cta" href="#recuerdos">Ver nuestros recuerdos ↓</a></div><div class="hero-photo fade"><img src="assets/recuerdo-10.jpg" alt="Un recuerdo especial"></div></section>
+<section id="recuerdos"><div class="section-head"><div class="eyebrow">Fotografías para volver a mirar</div><h2>Pequeños grandes momentos</h2><p>Una colección de instantes que forman parte de nuestra historia.</p></div><div class="gallery"><figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-01.jpg" alt="Recuerdo 1" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-02.jpg" alt="Recuerdo 2" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-03.jpg" alt="Recuerdo 3" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-04.jpg" alt="Recuerdo 4" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-05.jpg" alt="Recuerdo 5" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-06.jpg" alt="Recuerdo 6" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-07.jpg" alt="Recuerdo 7" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-08.jpg" alt="Recuerdo 8" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-09.jpg" alt="Recuerdo 9" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-10.jpg" alt="Recuerdo 10" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-11.jpg" alt="Recuerdo 11" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-12.jpg" alt="Recuerdo 12" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-13.jpg" alt="Recuerdo 13" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-14.jpg" alt="Recuerdo 14" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-15.jpg" alt="Recuerdo 15" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-16.jpg" alt="Recuerdo 16" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-17.jpg" alt="Recuerdo 17" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-18.jpg" alt="Recuerdo 18" onclick="showImage(this.src)"></figure>
+<figure class="tile reveal"><img loading="lazy" src="assets/recuerdo-19.jpg" alt="Recuerdo 19" onclick="showImage(this.src)"></figure>
+</div></section><section class="note reveal"><div class="mark">✳</div><h2>Gracias por los momentos compartidos.</h2><p>No todo lo que vivimos necesita una explicación. Algunas cosas simplemente merecen ser recordadas con cariño, por lo que fueron y por lo que significaron.</p></section></main>
+<section class="youtube-memory reveal" id="video-especial">
+  <div class="section-head">
+    <div class="eyebrow">Un recuerdo que también se escucha</div>
+    <h2>Un pedacito de música</h2>
+    <p>Porque hay canciones que nos llevan de vuelta a ciertos momentos.</p>
+  </div>
+  <div class="youtube-frame">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/MvITnIylaQ8"
+      title="Video especial de YouTube"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>
+  <p class="youtube-link"><a href="https://youtu.be/MvITnIylaQ8" target="_blank" rel="noopener noreferrer">Ver también en YouTube ↗</a></p>
+</section>
+
+<footer class="footer">Hecho con cariño · Un álbum de recuerdos</footer><div class="lightbox" id="lightbox" onclick="hideImage()"><button class="close" aria-label="Cerrar" onclick="hideImage()">×</button><img id="large" alt="Fotografía ampliada"></div><script>function showImage(src){document.getElementById('large').src=src;document.getElementById('lightbox').classList.add('open')}function hideImage(){document.getElementById('lightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')hideImage()})
+
+  const song = document.getElementById('memorySong');
+  const musicToggle = document.getElementById('musicToggle');
+  const musicPlayer = document.getElementById('musicPlayer');
+  musicToggle.addEventListener('click', async () => {
+    if (song.paused) {
+      try {
+        await song.play();
+        musicToggle.textContent = 'Ⅱ';
+        musicToggle.setAttribute('aria-label','Pausar canción');
+        musicPlayer.classList.add('playing');
+      } catch (err) {
+        musicToggle.textContent = '♫';
+      }
+    } else {
+      song.pause();
+      musicToggle.textContent = '♫';
+      musicToggle.setAttribute('aria-label','Reproducir canción');
+      musicPlayer.classList.remove('playing');
+    }
+  });
+  song.addEventListener('ended', () => {
+    musicToggle.textContent = '♫';
+    musicPlayer.classList.remove('playing');
+  });
+
+
+  // Parallax ligero: el fondo responde al scroll y al movimiento del puntero.
+  (() => {
+    const hero = document.querySelector('.parallax-hero');
+    const layers = [...document.querySelectorAll('.parallax-layer')];
+    if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let px=0, py=0, scrollY=0, raf=0;
+    function render(){
+      const rect=hero.getBoundingClientRect();
+      const scrollShift=Math.max(-45,Math.min(45,-rect.top*.055));
+      layers.forEach(layer=>{
+        const d=Number(layer.dataset.depth||.1);
+        const x=px*d*24;
+        const y=py*d*20 + scrollShift*d;
+        layer.style.translate=`${x}px ${y}px`;
+      });
+      raf=0;
+    }
+    hero.addEventListener('pointermove',e=>{
+      const r=hero.getBoundingClientRect();
+      px=(e.clientX-r.left)/r.width-.5;
+      py=(e.clientY-r.top)/r.height-.5;
+      if(!raf) raf=requestAnimationFrame(render);
+    });
+    hero.addEventListener('pointerleave',()=>{px=0;py=0;if(!raf)raf=requestAnimationFrame(render)});
+    window.addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(render)},{passive:true});
+    render();
+  })();
+
+// Corazones flotantes discretos y destellos al mover o tocar la página.
+(() => {
+  const heartLayer = document.getElementById('hearts');
+  const sparkleLayer = document.getElementById('sparkles');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduced) {
+    const symbols = ['♡','♥','✧'];
+    function floatingHeart() {
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+      el.style.left = (Math.random()*100) + 'vw';
+      el.style.fontSize = (13 + Math.random()*17) + 'px';
+      el.style.animationDuration = (9 + Math.random()*8) + 's';
+      heartLayer.appendChild(el);
+      setTimeout(() => el.remove(), 18000);
+    }
+    for(let i=0;i<7;i++) setTimeout(floatingHeart, i*850);
+    setInterval(floatingHeart, 1900);
+
+    let lastSparkle = 0;
+    function sparkle(x,y) {
+      const now = Date.now();
+      if(now-lastSparkle < 55) return;
+      lastSparkle = now;
+      const el = document.createElement('i');
+      el.className = 'sparkle';
+      el.style.left = x + 'px'; el.style.top = y + 'px';
+      sparkleLayer.appendChild(el);
+      setTimeout(()=>el.remove(),900);
+    }
+    window.addEventListener('pointermove', e => sparkle(e.clientX,e.clientY), {passive:true});
+
+    function heartBurst(x,y) {
+      for(let i=0;i<9;i++){
+        const el=document.createElement('span');
+        el.className='burst-heart';
+        el.textContent=['♥','♡','✦'][i%3];
+        el.style.left=x+'px'; el.style.top=y+'px';
+        const angle=(Math.PI*2*i)/9, distance=35+Math.random()*45;
+        el.style.setProperty('--dx',Math.cos(angle)*distance+'px');
+        el.style.setProperty('--dy',Math.sin(angle)*distance+'px');
+        el.style.setProperty('--rot',(Math.random()*70-35)+'deg');
+        sparkleLayer.appendChild(el);
+        setTimeout(()=>el.remove(),1000);
+      }
+    }
+    window.addEventListener('pointerdown', e=>heartBurst(e.clientX,e.clientY));
+  }
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+})();
+
+</script></body></html>
